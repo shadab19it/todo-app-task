@@ -33,6 +33,15 @@ const reducer = (state, action) => {
       });
       return { ...state, todos: doneTodo };
 
+    case actionTypes.UPDATE_TODO:
+      const updateTodo = state.todos.map((t, i) => {
+        if (i === action.payload.id) {
+          t.todo = action.payload.updatedTodo;
+        }
+        return t;
+      });
+      return { ...state, todos: updateTodo };
+
     // Delete todo
     case actionTypes.DELETE_TODO:
       const filterTodo = state.todos.filter((t, i) => i !== action.payload);

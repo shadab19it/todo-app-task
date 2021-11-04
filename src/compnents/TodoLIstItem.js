@@ -7,6 +7,22 @@ import DeleteIcon from "../assest/delete-icon.svg";
 const TodoListItem = () => {
   const [{ todos }, dispatch] = useGlobalState();
   const [selectedTodoItem, setSelectedTodo] = React.useState([]);
+  const [toggleInput, setToggleInput] = React.useState(null);
+  const [updatedTodo, setUpdatedTodo] = React.useState("");
+
+  const onDbClickInput = (todo, id) => {
+    setToggleInput(id);
+    setUpdatedTodo(todo.todo);
+  };
+
+  const onUpdateTodo = (e) => {
+    setUpdatedTodo(e.target.value);
+  };
+
+  const onClickUpdateTodo = (todo, id) => {
+    dispatch({ type: actionTypes.UPDATE_TODO, payload: { id, updatedTodo } });
+    cancelUpdate();
+  };
 
   // Delete Todo
   const onDeleteTodo = (id) => {
@@ -37,6 +53,9 @@ const TodoListItem = () => {
     setSelectedTodo([]);
   };
 
+  const cancelUpdate = () => {
+    setToggleInput(null);
+  };
   return (
     <div className="todo_list_container mt-3">
       {/* show selected no Todo item */}
@@ -60,7 +79,22 @@ const TodoListItem = () => {
                 <Form.Check type="checkbox" checked={todo.done} onChange={() => onDoneTodo(todo, i)} />
               </Col>
               <Col xs="9">
-                <span className={`${todo.done ? "text-decoration-line-through" : ""}`}>{todo.todo}</span>
+                {toggleInput === i ? (
+                  <div className="d-flex align-items-center">
+                    <span className="px-2" onClick={cancelUpdate} style={{ cursor: "pointer" }}>
+                      X
+                    </span>
+                    <Form onSubmit={() => onClickUpdateTodo(todo, i)} className="w-100">
+                      <Form.Control onChange={onUpdateTodo} value={updatedTodo} type="text" placeholder="Update Todo" />
+                    </Form>
+                  </div>
+                ) : (
+                  <div
+                    onDoubleClick={() => onDbClickInput(todo, i)}
+                    className={`${todo.done ? "text-decoration-line-through" : ""} d-block`}>
+                    {todo.todo}
+                  </div>
+                )}
               </Col>
               <Col xs="2">
                 <div className="d-flex align-items-center justify-content-around">
