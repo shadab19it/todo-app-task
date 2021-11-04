@@ -5,9 +5,16 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+// context import
+import { GlobalProvider } from "./context/context";
+import { initialState } from "./context/reducer";
+import reducer from "./context/reducer";
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <GlobalProvider initialState={initialState} reducer={reducer}>
+      <App />
+    </GlobalProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
