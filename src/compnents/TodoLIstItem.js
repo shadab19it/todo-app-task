@@ -1,5 +1,5 @@
 import React from "react";
-import { ListGroup, Row, Col, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { ListGroup, Row, Col, Form, OverlayTrigger, Tooltip, Button } from "react-bootstrap";
 import { useGlobalState } from "../context/context";
 import actionTypes from "../context/actions";
 import DeleteIcon from "../assest/delete-icon.svg";
@@ -81,12 +81,15 @@ const TodoListItem = () => {
               <Col xs="9">
                 {toggleInput === i ? (
                   <div className="d-flex align-items-center">
-                    <span className="px-2" onClick={cancelUpdate} style={{ cursor: "pointer" }}>
+                    <span onClick={cancelUpdate} style={{ cursor: "pointer" }}>
                       X
                     </span>
-                    <Form onSubmit={() => onClickUpdateTodo(todo, i)} className="w-100">
+                    <Form onSubmit={() => onClickUpdateTodo(todo, i)} className="w-100 mx-3">
                       <Form.Control onChange={onUpdateTodo} value={updatedTodo} type="text" placeholder="Update Todo" />
                     </Form>
+                    <Button size="sm" onClick={() => onClickUpdateTodo(todo, i)} variant="primary" className="pl-2" type="submit">
+                      Update
+                    </Button>
                   </div>
                 ) : (
                   <div
