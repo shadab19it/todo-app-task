@@ -4,6 +4,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ![ScreenShot](./src/assest/todo-app-img.jpg)
 
+1. Click on left Check box to Complete the Todo
+2. Click on right check box to Select Todo for multiple delete
+3. For Update Todo , Double Click on todo to open input
+
 ## Available Scripts
 
 In the project directory, you can run:
