@@ -13,7 +13,8 @@ const FormCompnent = () => {
   };
 
   //   Add New Todo
-  const onClickAddTodo = () => {
+  const onClickAddTodo = (e) => {
+    e.preventDefault();
     if (newTodo) {
       dispatch({ type: actionType.ADD_TODO, payload: { todo: newTodo, done: false } });
       setNewTodo("");
