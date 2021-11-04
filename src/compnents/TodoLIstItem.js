@@ -7,6 +7,8 @@ import DeleteIcon from "../delete-icon.svg";
 const TodoListItem = () => {
   const [{ todos }, dispatch] = useGlobalState();
   const [selectedTodoItem, setSelectedTodo] = React.useState([]);
+
+  // Delete Todo
   const onDeleteTodo = (id) => {
     dispatch({ type: actionTypes.DELETE_TODO, payload: id });
   };
@@ -29,7 +31,7 @@ const TodoListItem = () => {
     dispatch({ type: actionTypes.DONE_TODO, payload: { id: id, isDone: !todo.done } });
   };
 
-  //  Single Delete Todo
+  // Delete Multiple Todo
   const onDeleteSelectedTodo = () => {
     dispatch({ type: actionTypes.MULTI_DELETE_TODO, payload: selectedTodoItem });
     setSelectedTodo([]);
