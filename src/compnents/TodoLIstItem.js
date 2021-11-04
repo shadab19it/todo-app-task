@@ -2,7 +2,7 @@ import React from "react";
 import { ListGroup, Row, Col, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useGlobalState } from "../context/context";
 import actionTypes from "../context/actions";
-import DeleteIcon from "../delete-icon.svg";
+import DeleteIcon from "../assest/delete-icon.svg";
 
 const TodoListItem = () => {
   const [{ todos }, dispatch] = useGlobalState();
@@ -39,6 +39,7 @@ const TodoListItem = () => {
 
   return (
     <div className="todo_list_container mt-3">
+      {/* show selected no Todo item */}
       {selectedTodoItem.length > 0 && (
         <div className="d-flex align-items-center justify-content-between py-2">
           <div>Selected Todo : {selectedTodoItem.length}</div>
@@ -49,8 +50,9 @@ const TodoListItem = () => {
           </OverlayTrigger>
         </div>
       )}
+
+      {/* list All Todo Item */}
       <ListGroup>
-        {/* list All Todo Item */}
         {todos.map((todo, i) => (
           <ListGroup.Item className="p-3" key={i}>
             <Row className="align-items-center">
